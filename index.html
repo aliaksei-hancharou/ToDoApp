@@ -1,21 +1,53 @@
+<!doctype html>
 <html>
 <head>
-
-  
-	<link rel="stylesheet" href="css/style.css"/>
+	<meta charset="utf-8">
+  	<link rel="stylesheet" href="css/style.css"/>
 	<title>TO DO APP</title>
 </head>
 
 <body>
-	<form id="form-input">
-		<input type="text" id="todo-input" placeholder="Enter task here"/>
-	</form>
+	<section id="todoapp">
+		<header id="header">
+			<input id="new-todo" placeholder="Enter new task">
+		</header>
+		<section id="main">
+			<input id="toggle-all" type="checkbox">
+			<label for="toggle-all">Mark all as complete</label>
+			<ul id="todo-list"></ul>
+		</section>
+	</section>
+	<script type="text/template" id="item-template">
+		<div class="view">
+			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+			<label><%- title %></label>
+			<button class="destroy"></button>
+		</div>
+		<input class="edit" value="<%- title %>">
+	</script>
+	<script type="text/template" id="stats-template">
+		<span id="todo-count">remaining items</span>
+		<ul id="filters">
+			<li>
+				<a class="selected" href="#/">All</a>
+			</li>
+			<li>
+				<a href="#/active">Active</a>
+			</li>
+			<li>
+				<a href="#/completed">Completed</a>
+			</li>
+		</ul>
+		<% if (completed) { %>
+			<button id="clear-completed">Clear completed (<%= completed %>)</button>
+		<% } %>
+	</script>
 
 	<script src="js/index.js"></script>
 	<script src="js/lib/jquery-1.11.1.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
-
+        больше скриптов
 </body>
 
 </html>
