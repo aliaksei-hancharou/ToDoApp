@@ -1,186 +1,26 @@
 ﻿html,
 body {
-
   font: 14px/1.4em 'Arial';
   margin: 0;
   padding: 0;
-}
-
-.main {
-  font-family: Impact;
-  background: #777;
   text-align: center;
 }
 
-button,
-input[type="checkbox"] {
-  outline: none;
-}
-
-#todoapp {
-    margin: 130px 0 40px;
-    position: relative;
-}
-
-#todoapp input::-moz-placeholder {
-    color: #A9A9A9;
-    font-style: italic;
-}
-
 #new-todo {
-    padding: 16px 16px 16px 60px;
-}
-
-#new-todo, .edit {
-    border: 1px solid #999999;
-    box-sizing: border-box;
-    font-family: inherit;
-    font-size: 24px;
-    line-height: 1.4em;
-    margin: 0;
-    outline: medium none;
-    padding: 6px;
-    position: relative;
+  width: 480px;
+  height: 40px;
+  padding-left:10px;
+  margin-left: 10px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  border: 2px solid #9A7;
 }
 
 #main {
-    border-top: 1px dotted #ADADAD;
-    position: relative;
-}
-
-#toggle-all {
-    border: medium none;
-    left: -4px;
-    position: absolute;
-    text-align: center;
-    top: -42px;
-    width: 40px;
-}
-#toggle-all:before {
-    color: #D9D9D9;
-    content: "»";
-    font-size: 28px;
-    padding: 0 25px 7px;
-}
-#toggle-all:checked:before {
-    color: #737373;
-}
-
-#todo-list {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-}
-
-#todo-list li {
-    font-size: 20px;
-    position: relative;
-}
-
-#todo-list li .edit {
-    display: none;
-}
-
-#todo-list li.editing .edit {
-    display: block;
-    margin: 0 0 0 43px;
-    padding: 13px 17px 12px;
-    width: 506px;
-}
-
-#todo-list li.editing .view {
-    display: none;
-}
-
-#todo-list li .toggle {
-    border: medium none;
-    bottom: 0;
-    height: auto;
-    margin: auto 0;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    width: 40px;
-}
-
-#todo-list li .toggle:after {
-    color: #D9D9D9;
-    content: "✔";
-    font-size: 20px;
-    line-height: 43px;
-    text-shadow: 0 -1px 0 #BFBFBF;
-}
-
-#todo-list li .toggle:checked:after {}
-
-#todo-list li label {
-    display: block;
-    margin-left: 45px;
-    padding: 15px 60px 15px 15px;
-    white-space: pre;
-}
-
-#todo-list li.completed label {
-    text-decoration: line-through;
-}
-
-#todo-list li .destroy {
-    bottom: 0;
-    display: none;
-    font-size: 22px;
-    height: 40px;
-    margin: auto 0;
-    position: absolute;
-    right: 10px;
-    top: 0;
-    transition: all 0.2s ease 0s;
-    width: 40px;
-}
-#todo-list li .destroy:hover {}
-#todo-list li .destroy:after {
-    content: "✖";
-}
-#todo-list li:hover .destroy {
-    display: block;
-}
-
-#todo-count {
-    float: left;
-    text-align: left;
-}
-
-#filters {
-    left: 0;
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    right: 0;
-}
-
-#filters li {
-    display: inline;
-}
-
-#filters li a {
-    margin: 2px;
-    text-decoration: none;
-}
-
-#filters li a.selected {
-    font-weight: bold;
-}
-
-#clear-completed {
-    float: right;
-    font-size: 11px;
-    line-height: 20px;
-    padding: 0 10px;
-    position: relative;
-}
-
-#clear-completed:hover {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.15);
+  font-family: Impact;
+  background: #777;
+  text-align: center;
 }
 
 .hidden {

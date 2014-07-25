@@ -1,26 +1,22 @@
-var Todo = Backbone.Model.extend({
-    defaults: {
-	title: "",
-        completed: false,
-    }
+var app={
+	Views:{},
+	Collections:{},
+	Models:{},
+	templates:{},
+};
+
+app.Models.Todo=Backbone.Model.extend({
+	defaults: {
+		id:'',
+		title: '',
+		completed: false
+	},
+	
+	toggle: function () {
+		//this.save({
+			completed: !this.get('completed')
+		//});
+	}
 });
-
-var TodoList = Backbone.Collection.extend({
-    model: Todo
-});
-
-var todoList = new TodoList();
-
-var todoListView = new TodoListView();
-
-var todoRouter = new TodoRouter();
-
-$(document).ready(function() {
-
-    $('#text').keypress(function(e) {
-        if(e.keyCode==13) {
-            todoRouter.addTask();
-        }
-    });
-
-});
+app.Collections.TodoViews=Backbone.Collection.extend({});
+app.todoViews=new app.Collections.TodoViews();
