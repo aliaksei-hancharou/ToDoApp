@@ -7,7 +7,7 @@ app.Router=Backbone.Router.extend({
 	},
 	
 	defaultRoute:function(){
-		app.filter="all";
+		app.filter="";
 		app.todoListView.render();
 	},
 
@@ -18,16 +18,14 @@ app.Router=Backbone.Router.extend({
 
 	delete:function(id){
 		app.todoList.remove(app.todoList.get(id));
-		this.navigate("/",{trigger: true});
+		this.refresh();
 	},
 
 	completeSelected:function(){
-		var that = this;
+		app.todoList.reset();
 		$('input[type=checkbox]:checked').each(function () {
-			that.complete(this.id);
-        	});
-		this.navigate("/",{trigger: true});
-		this.isSelected = false;
+				new Todo({'id':this.id}).save();
+        });
 		return this;
 	},
 
@@ -40,6 +38,14 @@ app.Router=Backbone.Router.extend({
 		});
 		this.isSelected = false;
         	return this;
+	},
+	
+	refresh: function(){
+		app.todoList.fetch({success : function() {app.todoListView.render()}});
+		if (app.filter==='')
+			this.navigate("#/",{trigger: true});
+		else
+			this.navigate("#/filter/"+app.filter);
 	}
 
 });

@@ -7,7 +7,7 @@ app.templates.todoCompleted=_.template($("#completed-template").html())
 
 app.templates.todoList=_.template($("#list-template").html());
 
-app.filter='all';
+app.filter='';
 
 app.Views.TodoList=Backbone.View.extend({
 	el:$("#todo-list"),
@@ -19,8 +19,6 @@ app.Views.TodoList=Backbone.View.extend({
 	},
 
 	render: function(){
-		console.log("render") 
-		console.log(app.todoList.length);
 		$(this.el).html(this.template());
 		this.addAll();
 	},
@@ -31,20 +29,20 @@ app.Views.TodoList=Backbone.View.extend({
 
 	addOne: function (model) {
 		switch(app.filter){
-			case "all":
+			default:
 				view = new app.Views.Todo({ model: model });
 				app.todoViews.add(view);
 				$("ul", this.el).append(view.render());
 				break;
 			case "completed":
-				if (model.get("completed")===true){
+				if (model.get("completed")){
 					view = new app.Views.Todo({ model: model });
 					app.todoViews.add(view);
 					$("ul", this.el).append(view.render());
 				}
 				break;
 			case "active":
-				if (model.get("completed")==false){
+				if (!model.get("completed")){
 					view = new app.Views.Todo({ model: model });
 					app.todoViews.add(view);
 					$("ul", this.el).append(view.render());
@@ -76,7 +74,7 @@ app.Views.Todo=Backbone.View.extend({
 	},
 
 	render: function () {
-		if (this.model.get("completed")==false)
+		if (!this.model.get("completed"))
 			return $(this.el).append(this.template(this.model.toJSON()));
 		else
 			return $(this.el).append(this.completedTemplate(this.model.toJSON()));
@@ -96,10 +94,9 @@ app.Views.InputView=Backbone.View.extend({
 
 	createOnEnter:function(event) {
 		if (event.which==ENTER_KEY){
-			console.log(app.todoList.length);
-			app.todoList.add(this.newAttributes());
-			console.log(app.todoList.length);
+			new app.Models.Todo().save({"title" : this.$input.val()});
 			this.$input.val('');
+			app.router.refresh();
 		}
 	},
 

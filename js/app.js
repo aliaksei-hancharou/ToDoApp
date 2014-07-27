@@ -6,6 +6,7 @@ var app={
 };
 
 app.Models.Todo=Backbone.Model.extend({
+	urlRoot : "/",
 	defaults: {
 		id:'',
 		title: '',
@@ -13,9 +14,7 @@ app.Models.Todo=Backbone.Model.extend({
 	},
 	
 	toggle: function () {
-		//this.save({
-			completed: !this.get('completed')
-		//});
+		completed: !this.get('completed')
 	}
 });
 app.Collections.TodoViews=Backbone.Collection.extend({});
