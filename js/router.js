@@ -1,51 +1,44 @@
 app.Router=Backbone.Router.extend({
 	routes:{
-		"":"defaultRoute",
-		"filter/*filter":"filter",
+		"":"redirect",
+		"all":"all",
+		"filter/:filter":"filter",
 		"complete":"completeSelected",
-		"delete/:id":"delete"
+		"delete/:id":"delete",
 	},
 	
-	defaultRoute:function(){
+	redirect:function(){
+		if (app.filter==='')
+			this.navigate("#/all");
+		else
+			this.navigate("#/filter/"+app.filter);
+	},
+	
+	all:function(){
 		app.filter="";
-		app.todoListView.render();
+		this.refresh();
 	},
 
 	filter:function(param){
 		app.filter=param;
-		app.todoListView.render();
+		this.refresh();
 	},
 
 	delete:function(id){
-		app.todoList.remove(app.todoList.get(id));
-		this.refresh();
+		new app.Models.Todo ({"id" : id}).destroy();
+		this.redirect();
 	},
 
 	completeSelected:function(){
 		app.todoList.reset();
 		$('input[type=checkbox]:checked').each(function () {
-				new Todo({'id':this.id}).save();
+				new app.Models.Todo({'id': this.id}).save();
         });
-		return this;
-	},
-
-	complete: function(id){
-		_.each(app.todoList.models, function(task) {
-			console.log(task.get('id'))
-			if(task.get('id') == id) {
-				task.set("completed", true);
-			}
-		});
-		this.isSelected = false;
-        	return this;
+		this.redirect();
 	},
 	
 	refresh: function(){
 		app.todoList.fetch({success : function() {app.todoListView.render()}});
-		if (app.filter==='')
-			this.navigate("#/",{trigger: true});
-		else
-			this.navigate("#/filter/"+app.filter);
 	}
 
 });
@@ -53,3 +46,15 @@ app.Router=Backbone.Router.extend({
 app.router = new app.Router();
 
 Backbone.history.start();
+
+$(document).ready(function() {
+
+	$('#input-todo').submit(function(e) {
+		var title=$('#new-todo').val();
+    	new app.Models.Todo().save({"title" : title});
+    	$('#new-todo').val('');
+		app.router.refresh();
+		return false;
+    });
+
+});

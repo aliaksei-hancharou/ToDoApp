@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -7,13 +7,13 @@
 
 <body>
 	<div id="filters">
-		<a href = '#/' >All</a>
+		<a href = '#/all' >All</a>
 		<a href = '#/filter/completed'>Completed</a>
 		<a href = '#/filter/active' >Active</a>
 	</div>
-	<div id="input-todo">
+	<form id="input-todo" action="#">
 		<input type="text" id="new-todo" placeholder="Enter new todo!" autofocus>
-	</div>
+	</form>
 	
 	<div id="todo-list"></div>
 	
@@ -39,7 +39,6 @@
 	<script src="js/collection.js"></script>
 	<script src="js/view.js"></script>
 	<script src="js/router.js"></script>
-
 
 </body>
 

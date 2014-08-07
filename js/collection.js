@@ -3,14 +3,10 @@ app.Collections.TodoList=Backbone.Collection.extend({
 
 	url : function() {
 		if (app.filter==='')
-			return '#/';
+			return '/all';
 		else
-			return "#/filter/" + app.filter;
-	},
-
-	initialize:function(){
-		console.log("collection init")
-	},
+			return "/filter/" + app.filter;
+	}
 });
 
 app.todoList=new app.Collections.TodoList();
